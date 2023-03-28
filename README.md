@@ -144,7 +144,7 @@ Your database should contain the following four models, including the requiremen
 
     * Doesn't allow null values.
 
-    * Set as primary key.
+    * Set as ptag_idrimary key.
 
     * Uses auto increment.
 
