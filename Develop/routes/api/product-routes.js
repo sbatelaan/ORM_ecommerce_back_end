@@ -33,7 +33,7 @@ router.get('/:id', async (req, res) => {
     res.status(500).json(err);
   }
 });
-
+//Post and Put requests are written using Promise chaining with .then methods
 router.post('/', (req, res) => {
   /* req.body should look like this...
     {

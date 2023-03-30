@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const { Category, Product } = require('../../models');
 
+//Get request for all categories
+//using Async/Await instead of .then methods. Creates shorter, cleaner code
+//Makes error handling and debugging much easier
+//executes code sequentially rather than in a chain 
 router.get('/', async (req, res) => {
   try {
     const categoryData = await Category.findAll({
@@ -12,6 +16,7 @@ router.get('/', async (req, res) => {
   }
 });
 
+//get request for category by ID
 router.get('/:id', async (req, res) => {
   try {
     const categoryData = await Category.findByPk(req.params.id, {
@@ -27,6 +32,7 @@ router.get('/:id', async (req, res) => {
   }
 });
 
+//post requests allows us to create a new category
 router.post('/', async (req, res) => {
   try {
     const categoryData = await Category.create(req.body);
@@ -36,6 +42,7 @@ router.post('/', async (req, res) => {
   }
 });
 
+//put request allows us to update category
 router.put('/:id', async (req, res) => {
   try {
     const categoryData = await Category.update(req.body, {
@@ -49,6 +56,7 @@ router.put('/:id', async (req, res) => {
   }
 });
 
+//delete request allows us to delete categories
 router.delete('/:id', async (req, res) => {
   try {
     const categoryData = await Category.destroy({
@@ -59,7 +67,6 @@ router.delete('/:id', async (req, res) => {
     if (!categoryData) {
       res.status(404).json({ message: 'Np category with this id'});
       return;
-      //?
     }
     res.status(200).json(categoryData);
   } catch (err) {
